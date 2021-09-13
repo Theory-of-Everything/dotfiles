@@ -1,7 +1,7 @@
 ## The Theory of Dots
 Eyo! This is my repository with my dotfiles.
 
-<img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/rice-sidebar.png" alt="img" align="right" width="400px" height="700px">
+<img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/rice-sidebar.png" alt="img" align="right" width="350px">
 
 The setup wiki page will guide you through installing my setup.
 

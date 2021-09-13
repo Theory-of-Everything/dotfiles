@@ -1,0 +1,106 @@
+!-------------------------URxvt Config
+urxvt.perl-ext-common: clipboard,url-select,keyboard-select,resize-font
+
+urxvt.scrollBar: false
+urxvt.internalBorder: 10
+urxvt.cursorBlink: true
+
+urxvt.depth: 32
+!urxvt.background: [80]#0a0b0c
+urxvt.background: [80]#0f1011
+!urxvt.background: [80]#1c1e21
+!urxvt.background: [80]#000000
+
+!urxvt Font Config
+urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
+!urxvt.font: xft:scientifica:style=Bold
+urxvt.resize-font.smaller: C-j
+urxvt.resize-font.bigger: C-k
+
+
+!urxvt Copy/Paste keys
+urxvt.keysym.M-c: perl:clipboard:copy
+urxvt.keysym.M-v: perl:clipboard:paste
+
+
+!urxvt url-sel/keeb-sel keys
+urxvt.keysym.M-u: prel:url-select:select_next
+urxvt.keysym.M-Escape: perl:keyboard-select:search
+urxvt.keysym.M-s: perl:keyboard-select:search
+
+Xft*dpi: 109
+
+!------------------------- Zen Color Conf
+! special
+*.foreground:   #d0d0d0
+*.background:   #151515
+*.cursorColor:  #d0d0d0
+
+! black
+*.color0:       #1a1a16
+*.color8:       #36362d
+
+! red
+*.color1:       #f56991
+*.color9:       #ce3c65
+
+! green
+*.color2:       #aaf2aa
+*.color10:      #68c768
+
+! yellow
+*.color3:       #a0ee71
+*.color11:      #71cc3a
+
+! blue
+*.color4:       #1685bf
+*.color12:      #0f64b7
+
+! magenta
+*.color5:       #e48cd2
+*.color13:      #c25bad
+
+! cyan
+*.color6:       #45d7be
+*.color14:      #21a08b
+
+! white
+*.color7:       #d0d0d0
+*.color15:      #f5f5f5
+
+!--------------------------OLD COLORS
+!*.foreground:   #c5c8c6
+!*.background:   #1d1f21
+!*.cursorColor:  #c5c8c6
+
+! black
+!*.color0:       #282a2e
+!*.color8:       #373b41
+
+! red
+!*.color1:       #a54242
+!*.color9:       #cc6666
+
+! green
+!*.color2:       #8c9440
+!*.color10:      #b5bd68
+
+! yellow
+!*.color3:       #de935f
+!*.color11:      #f0c674
+
+! blue
+!*.color4:       #5f819d
+!*.color12:      #81a2be
+
+! magenta
+!*.color5:       #85678f
+!*.color13:      #b294bb
+
+! cyan
+!*.color6:       #5e8d87
+!*.color14:      #8abeb7
+
+! white
+!*.color7:       #707880
+!*.color15:      #c5c8c6

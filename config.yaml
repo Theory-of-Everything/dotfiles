@@ -57,6 +57,9 @@ dotfiles:
   d_rofi:
     src: config/rofi
     dst: ~/.config/rofi
+  d_x11:
+    src: config/x11
+    dst: ~/.config/x11
 profiles:
   inkmachine:
     dotfiles:
@@ -78,3 +81,4 @@ profiles:
     - f_config.toml
     - f_picom.conf
     - d_rofi
+    - d_x11

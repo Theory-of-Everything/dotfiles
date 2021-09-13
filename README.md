@@ -68,9 +68,7 @@ $ ./dotdrop.sh install inkmachine
 ## SCREENSHOTS!!!1!11!!1!!!1
 <details>
     <summary><strong>Afterburner</strong></summary>
-
-    <img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_1.png">
-    <img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_2.png">
-    <img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_3.png">
-
+<img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_1.png">
+<img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_2.png">
+<img src="https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/afterburner_3.png">
 </details>

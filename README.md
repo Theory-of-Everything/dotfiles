@@ -16,5 +16,4 @@ Some specs:
  - **Browser:** Brave (heheh)
 
 ## So what the hell are dotfiles?!?!?!?!
-Dotfiles in basic essence are similar to Windows hidden files. Unlike Windows, dotfiles on Linux and Unix-based systems are used in a much different capacity. Mainly dotfiles are utilized for configuration of software. The name dotfiles comes from a UNIX convention where hidden file's name starts with a `.`(dot). This convention traces its origin back to old UNIX "feature" (remember: "Its not a bug, its a feature.") where files starting with `.` became invisible by some programs. People exploited this "feature" to make files hidden, and the UNIX community finally adopted this as a conveention. Remember: it's not a bug; it's a feature (just to force it into ya ;) ).
-
+Dotfiles in basic essence are the Unix version of Windows hidden files. Unlike Windows, dotfiles are mainly utilized for configuration of software. The name dotfiles comes from a UNIX convention where hidden file's name starts with a `.`(dot). This convention traces its origin back to old "feature" in `ls` (remember: "Its not a bug, its a feature.") where files with a preceding `.` would be hidden from output. People natrually exploited this "feature" to make files hidden, adn eventually it was adopted as standard. Remember: it's not a bug; it's a feature!

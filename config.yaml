@@ -1,0 +1,80 @@
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+dotfiles:
+  f_zshrc:
+    src: config/zsh/.zshrc
+    dst: ~/.config/zsh/.zshrc
+  f_rc.lua:
+    src: config/awesome/rc.lua
+    dst: ~/.config/awesome/rc.lua
+  f_json.lua:
+    src: config/awesome/json.lua
+    dst: ~/.config/awesome/json.lua
+  d_config:
+    src: config/awesome/config
+    dst: ~/.config/awesome/config
+  d_lib:
+    src: config/awesome/lib
+    dst: ~/.config/awesome/lib
+  d_misc:
+    src: config/awesome/misc
+    dst: ~/.config/awesome/misc
+  d_resources:
+    src: config/awesome/resources
+    dst: ~/.config/awesome/resources
+  d_themes:
+    src: config/awesome/themes
+    dst: ~/.config/awesome/themes
+  f_theme.lua:
+    src: config/awesome/theme.lua
+    dst: ~/.config/awesome/theme.lua
+  d_widget:
+    src: config/awesome/widget
+    dst: ~/.config/awesome/widget
+  f_mpd.conf:
+    src: config/mpd/mpd.conf
+    dst: ~/.config/mpd/mpd.conf
+  f_mpv.conf:
+    src: config/mpv/mpv.conf
+    dst: ~/.config/mpv/mpv.conf
+  f_input.conf:
+    src: config/mpv/input.conf
+    dst: ~/.config/mpv/input.conf
+  d_scripts:
+    src: config/mpv/scripts
+    dst: ~/.config/mpv/scripts
+  f_config:
+    src: config/ncmpcpp/config
+    dst: ~/.config/ncmpcpp/config
+  f_config.toml:
+    src: config/ncspot/config.toml
+    dst: ~/.config/ncspot/config.toml
+  f_picom.conf:
+    src: config/picom/picom.conf
+    dst: ~/.config/picom/picom.conf
+  d_rofi:
+    src: config/rofi
+    dst: ~/.config/rofi
+profiles:
+  inkmachine:
+    dotfiles:
+    - f_zshrc
+    - f_rc.lua
+    - f_json.lua
+    - d_config
+    - d_lib
+    - d_misc
+    - d_resources
+    - d_themes
+    - f_theme.lua
+    - d_widget
+    - f_mpd.conf
+    - f_mpv.conf
+    - f_input.conf
+    - d_scripts
+    - f_config
+    - f_config.toml
+    - f_picom.conf
+    - d_rofi

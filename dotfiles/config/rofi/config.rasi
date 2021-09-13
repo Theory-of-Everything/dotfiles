@@ -1,0 +1,4 @@
+configuration {
+	modi: "window,run,ssh,combi";
+	theme: "lb.rasi";
+}

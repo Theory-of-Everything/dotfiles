@@ -18,8 +18,11 @@ theme.font = 'cozette 10'
 theme.fg_normal = '#DCDCCC'
 theme.fg_focus = '#DCDCCC'
 theme.fg_urgent = '#DCDCCC'
-theme.bg_normal = '#1c1e21'
-theme.bg_focus = '#363636'
+-- theme.bg_normal = '#1c1e21'
+theme.bg_normal = '#18181b'
+-- theme.bg_focus = '#363636'
+-- theme.bg_focus = '#21252d'
+theme.bg_focus = '#212d2c'
 theme.bg_urgent = '#CE3C65'
 theme.bg_systray = theme.bg_normal
 -- }}}

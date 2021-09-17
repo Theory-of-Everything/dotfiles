@@ -60,6 +60,9 @@ dotfiles:
   d_x11:
     src: config/x11
     dst: ~/.config/x11
+  f_config.conf:
+    src: config/neofetch/config.conf
+    dst: ~/.config/neofetch/config.conf
 profiles:
   inkmachine:
     dotfiles:
@@ -82,3 +85,4 @@ profiles:
     - f_picom.conf
     - d_rofi
     - d_x11
+    - f_config.conf

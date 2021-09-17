@@ -8,6 +8,7 @@ urxvt.cursorBlink: true
 urxvt.depth: 32
 !urxvt.background: [80]#0a0b0c
 urxvt.background: [80]#0f1011
+!urxvt.background: [80]#18181b
 !urxvt.background: [80]#1c1e21
 !urxvt.background: [80]#000000
 

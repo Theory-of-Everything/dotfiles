@@ -13,8 +13,8 @@ urxvt.background: [80]#0f1011
 !urxvt.background: [80]#000000
 
 !urxvt Font Config
-urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
-!urxvt.font: xft:scientifica:style=Bold
+!urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
+urxvt.font: xft:curie:style=Regular
 urxvt.resize-font.smaller: C-j
 urxvt.resize-font.bigger: C-k
 

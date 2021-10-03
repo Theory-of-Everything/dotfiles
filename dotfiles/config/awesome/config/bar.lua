@@ -1,8 +1,8 @@
-local gears = require("gears")
-local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local keys = require("config.keys")
+local gears = require('gears')
+local awful = require('awful')
+local wibox = require('wibox')
+local beautiful = require('beautiful')
+local keys = require('config.keys')
 
 local bar = {}
 
@@ -21,14 +21,14 @@ function bar.set_taglist(s)
 				{
 					{
 						{
-							id = "index_role",
+							id = 'index_role',
 							widget = wibox.widget.textbox,
 						},
 						margins = 0,
 						widget = wibox.container.margin,
 					},
 					{
-						id = "text_role",
+						id = 'text_role',
 						widget = wibox.widget.textbox,
 					},
 					layout = wibox.layout.fixed.horizontal,
@@ -37,7 +37,7 @@ function bar.set_taglist(s)
 				right = 5,
 				widget = wibox.container.margin,
 			},
-			id = "background_role",
+			id = 'background_role',
 			widget = wibox.container.background,
 		},
 		buttons = keys.taglist_buttons,
@@ -63,14 +63,14 @@ function bar.set_tasklist(s)
 				{
 					{
 						{
-							id = "icon_role",
+							id = 'icon_role',
 							widget = wibox.widget.imagebox,
 						},
 						margins = 2,
 						widget = wibox.container.margin,
 					},
 					{
-						id = "text_role",
+						id = 'text_role',
 						widget = wibox.widget.textbox,
 					},
 					layout = wibox.layout.fixed.horizontal,
@@ -79,7 +79,7 @@ function bar.set_tasklist(s)
 				right = 10,
 				widget = wibox.container.margin,
 			},
-			id = "background_role",
+			id = 'background_role',
 			widget = wibox.container.background,
 		},
 	})
@@ -101,14 +101,14 @@ function bar.set_taglist_vert(s)
 				{
 					{
 						{
-							id = "index_role",
+							id = 'index_role',
 							widget = wibox.widget.textbox,
 						},
 						margins = 0,
 						widget = wibox.container.margin,
 					},
 					{
-						id = "text_role",
+						id = 'text_role',
 						widget = wibox.widget.textbox,
 					},
 					layout = wibox.layout.fixed.vertical,
@@ -119,7 +119,7 @@ function bar.set_taglist_vert(s)
 				right = 5,
 				widget = wibox.container.margin,
 			},
-			id = "background_role",
+			id = 'background_role',
 			widget = wibox.container.background,
 		},
 		buttons = keys.taglist_buttons,
@@ -146,7 +146,7 @@ function bar.set_tasklist_vert(s)
 					{
 						{
 							{
-								id = "icon_role",
+								id = 'icon_role',
 								widget = wibox.widget.imagebox,
 							},
 							margins = 0,
@@ -156,7 +156,7 @@ function bar.set_tasklist_vert(s)
 					},
 					{
 						{
-							id = "text_role",
+							id = 'text_role',
 							widget = wibox.widget.textbox,
 						},
 						layout = wibox.layout.fixed.vertical,
@@ -167,7 +167,7 @@ function bar.set_tasklist_vert(s)
 				right = 10,
 				widget = wibox.container.margin,
 			},
-			id = "background_role",
+			id = 'background_role',
 			widget = wibox.container.background,
 		},
 	})

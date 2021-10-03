@@ -16,7 +16,7 @@ client.connect_signal('manage', function(c)
 	end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
+-- {{{ Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal('request::titlebars', function(c)
 	-- buttons for the titlebar
 	local buttons = gears.table.join(
@@ -55,12 +55,16 @@ client.connect_signal('request::titlebars', function(c)
 		layout = wibox.layout.align.horizontal,
 	})
 end)
+-- }}}
 
+-- {{{ sloppy focus
 -- Enable sloppy focus, so that focus follows mouse.
 --client.connect_signal('mouse::enter', function(c)
 --    c:emit_signal('request::activate', 'mouse_enter', {raise = false})
 --end)
+-- }}}
 
+-- {{{ client focus signals
 client.connect_signal('focus', function(c)
 	c.border_color = beautiful.border_focus
 	c.opacity = 1
@@ -69,7 +73,9 @@ client.connect_signal('unfocus', function(c)
 	c.border_color = beautiful.border_normal
 	c.opacity = 1
 end)
+-- }}}
 
+-- {{{ Set floating windows to have titlebar
 -- Toggle titlebar on or off depending on s. Creates titlebar if it doesn't exist
 --local function setTitlebar(client, s)
 --    if s then
@@ -105,5 +111,4 @@ end)
 --        end
 --    end
 --end)
-
 -- }}}

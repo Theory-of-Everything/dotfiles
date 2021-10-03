@@ -1,6 +1,6 @@
-local awful = require("awful")
-local beautiful = require("beautiful")
-local keys = require("config.keys")
+local awful = require('awful')
+local beautiful = require('beautiful')
+local keys = require('config.keys')
 
 tags = root.tags()
 
@@ -23,36 +23,36 @@ awful.rules.rules = {
 	-- Floating clients.
 	{
 		rule_any = {
-			instance = { "DTA", "copyq", "pinentry" },
+			instance = { 'DTA', 'copyq', 'pinentry' },
 			class = {
-				"Arandr",
-				"Blueman-manager",
-				"Gpick",
-				"Kruler",
-				"MessageWin",
-				"Sxiv",
-				"mpv",
-				"feh",
-				"Tor Browser",
-				"Wpa_gui",
-				"veromix",
-				"xtightvncviewer",
-                "pritunl",
+				'Arandr',
+				'Blueman-manager',
+				'Gpick',
+				'Kruler',
+				'MessageWin',
+				'Sxiv',
+				'mpv',
+				'feh',
+				'Tor Browser',
+				'Wpa_gui',
+				'veromix',
+				'xtightvncviewer',
+				'pritunl',
 			},
-			name = { "Event Tester" },
-			role = { "AlarmWindow", "ConfigManager", "pop-up" },
+			name = { 'Event Tester' },
+			role = { 'AlarmWindow', 'ConfigManager', 'pop-up' },
 		},
 		properties = { floating = true },
 	},
 
 	-- Add titlebars to normal clients and dialogs
-	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
+	{ rule_any = { type = { 'normal', 'dialog' } }, properties = { titlebars_enabled = false } },
 
-	{ rule = { instance = "scpd" }, properties = { floating = true } },
+	{ rule = { instance = 'scpd' }, properties = { floating = true } },
 
-	{ rule = { class = "Conky" }, properties = { skip_taskbar = true } },
+	{ rule = { class = 'Conky' }, properties = { skip_taskbar = true } },
 
-	{ rule = { class = "brave-browser" }, properties = { screen = 1, tag = "3" } },
+	{ rule = { class = 'brave-browser' }, properties = { screen = 1, tag = 3 } },
 
-	{ rule = { class = "Mail" }, properties = { screen = 2, tag = "6" } },
+	{ rule = { class = 'Mail' }, properties = { screen = 2, tag = 6 } },
 }

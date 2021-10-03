@@ -20,13 +20,19 @@ require('awful.autofocus')
 -- local libraries to require
 local keys = require('config.keys')
 local bar = require('config.bar')
+local themeloader = require('lib.themeloader')
+local bling = require('bling')
 require('config')
 require('misc')
 
+local modkey = " Mod4"
+
 -- {{{ Variable definitions
 
-beautiful.init('/home/theorytoe/.config/awesome/theme.lua')
--- wallpapers are handled by nitrogen
+themeloader.set_global_theme('everforest')
+-- themeloader.set_xres_theme('oxide')
+-- themeloader.set_awesome_theme('everforest')
+
 
 -- This is used later as the default terminal and editor to run.
 terminal = 'urxvt'
@@ -61,8 +67,8 @@ launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = powerm
 
 menubar.utils.terminal = terminal
 mykeyboardlayout = awful.widget.keyboardlayout()
+-- }}}
 
--- {{{ Wibar
 -- credit to Dark NES#4901
 -- local clock = {
 -- 	-- widget = {
@@ -105,6 +111,7 @@ systray_wid:set_base_size(20)
 
 local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 1)
 
+-- {{{ Per-screen init
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)
@@ -127,7 +134,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- vertical bar components
 	-- s.taglist = bar.set_taglist_vert(s)
 	-- s.tasklist = bar.set_tasklist_vert(s)
-
+	-- {{{ Wibar
 	-- Create horizontal wibox
 	s.wibox = awful.wibar({
 		position = 'top',
@@ -137,7 +144,7 @@ awful.screen.connect_for_each_screen(function(s)
 		bg = '#00000000',
 	})
 
-    -- create vertical wibox
+	-- create vertical wibox
 	-- s.wibox = awful.wibar({
 	-- 	position = 'left',
 	-- 	screen = s,
@@ -193,7 +200,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- 	},
 	-- })
 
-    -- horizontal wbar 
+	-- horizontal wbar
 	s.wibox:setup({
 		layout = wibox.container.background,
 		bg = '#00000000',
@@ -240,34 +247,13 @@ awful.screen.connect_for_each_screen(function(s)
 			},
 		},
 	})
-
-
 end)
+-- }}}
+
+-- }}}
 
 tags = root.tags()
 
 -- set keeb and mouse bindings
 root.buttons(keys.desktop_buttons)
 root.keys(keys.globalkeys)
-
--- {{{ Signals
--- Signal function to execute when a new client appears.
-client.connect_signal('manage', function(c)
-	-- Set the windows at the slave,
-	-- i.e. put it at the end of others instead of setting it master.
-	-- if not awesome.startup then awful.client.setslave(c) end
-
-	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-		-- Prevent clients from being unreachable after screen count changes.
-		awful.placement.no_offscreen(c)
-	end
-end)
-
-client.connect_signal('focus', function(c)
-	c.border_color = beautiful.border_focus
-	c.opacity = 1
-end)
-client.connect_signal('unfocus', function(c)
-	c.border_color = beautiful.border_normal
-	c.opacity = 1
-end)

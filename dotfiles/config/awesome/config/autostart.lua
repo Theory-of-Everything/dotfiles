@@ -1,4 +1,4 @@
-local awful = require ('awful')
+local awful = require('awful')
 
 -- display settings
 awful.spawn.with_shell('autorandr --change --default default')
@@ -11,9 +11,6 @@ awful.spawn.with_shell('sleep 3')
 --systray items
 awful.spawn.with_shell('pgrep -x udiskie > /dev/null || udiskie -t')
 awful.spawn.with_shell('pgrep -x connman-ui-gtk > /dev/null/ || connman-ui-gtk')
--- awful.spawn.with_shell('pgrep -x nm-applet > /dev/null/ || nm-applet')
--- awful.spawn.with_shell('pgrep -x lxqt-connman-applet > /dev/null/ || lxqt-connman-applet')
--- awful.spawn.with_shell('pgrep -x conky > /dev/null/ || conky')
 
 -- policykit agent
 awful.spawn.with_shell('pgrep -x lxqt-policykit-agent > /dev/null/ || lxqt-policykit-agent')
@@ -32,3 +29,6 @@ awful.spawn.with_shell('pgrep -x lxpolkit > /dev/null/ || lxpolkit')
 -- essential services
 awful.spawn.with_shell('pgrep -x protonmail-bridge --noninteractive > /dev/null/ || protonmail-bridge --noninteractive')
 awful.spawn.with_shell('pgrep -x keepassxc > /dev/null/ || keepassxc')
+
+-- misc
+awful.spawn.with_shell('pgrep -x abduco -c ncspot ncspot > /dev/null/ || abduco -c ncspot ncspot')

@@ -1,4 +1,5 @@
 configuration {
 	modi: "window,run,ssh,combi";
-	theme: "lb.rasi";
+	/* theme: "lb.rasi"; */
+	theme: "style_7.rasi";
 }

@@ -25,8 +25,6 @@ local bling = require('bling')
 require('config')
 require('misc')
 
-local modkey = " Mod4"
-
 -- {{{ Variable definitions
 
 themeloader.set_global_theme('everforest')
@@ -232,12 +230,12 @@ awful.screen.connect_for_each_screen(function(s)
 							layout = wibox.layout.fixed.horizontal,
 							fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
 							clock,
-							mpd_wid,
+							-- mpd_wid,
 							systray_wid,
-							gith_wid({
-								username = 'Theory-of-Everything',
-								number_of_events = '6',
-							}),
+							-- gith_wid({
+							-- 	username = 'Theory-of-Everything',
+							-- 	number_of_events = '6',
+							-- }),
 							{
 								widget = wibox.widget.textbox(' | '),
 							},

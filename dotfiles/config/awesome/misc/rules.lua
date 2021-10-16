@@ -48,11 +48,21 @@ awful.rules.rules = {
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { 'normal', 'dialog' } }, properties = { titlebars_enabled = false } },
 
+	-- misc rules
 	{ rule = { instance = 'scpd' }, properties = { floating = true } },
-
 	{ rule = { class = 'Conky' }, properties = { skip_taskbar = true } },
-
+	{
+		rule = { class = 'GLava' },
+		properties = {
+			skip_taskbar = true,
+			sticky = true,
+			focus = false,
+			focusable = false,
+			ontop = false,
+			below = true,
+			fullscreen = true,
+		},
+	},
 	{ rule = { class = 'brave-browser' }, properties = { screen = 1, tag = 3 } },
-
 	{ rule = { class = 'Mail' }, properties = { screen = 2, tag = 6 } },
 }

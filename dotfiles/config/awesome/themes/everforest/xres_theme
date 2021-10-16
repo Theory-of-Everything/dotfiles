@@ -24,6 +24,8 @@ urxvt.keysym.M-u: prel:url-select:select_next
 urxvt.keysym.M-Escape: perl:keyboard-select:search
 urxvt.keysym.M-s: perl:keyboard-select:search
 
+Xcursor.theme: goglus
+
 Xft*dpi: 109
 
 !------------------------- Everforest theme
@@ -33,8 +35,8 @@ Xft*dpi: 109
 *.cursorColor:  #d3c6aa
 
 ! black
-*.color0:       #7a8478
-*.color8:       #7a8478
+*.color0:       #3a454a
+*.color8:       #3a454a
 
 ! red
 *.color1:       #e67e80

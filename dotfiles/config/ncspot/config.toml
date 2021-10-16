@@ -13,3 +13,8 @@ statusbar_progress = "light red"
 cmdline = "light white"
 cmdline_bg = "black"
 search_match = "light red"
+
+[keybindings]
+"Shift+1" = "focus queue"
+"Shift+2" = "focus library"
+"Shift+3" = "focus search"

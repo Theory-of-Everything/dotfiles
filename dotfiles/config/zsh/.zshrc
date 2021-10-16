@@ -69,14 +69,18 @@ append_path() {
     esac
 }
 
-append_path "$HOME/.local/bin"
 append_path "$HOME/.config/scripts"
+append_path "$HOME/.cargo/bin"
+
+if [ -d "$HOME/.local/bin" ] && (! echo $PATH | grep -q "$HOME/.local/bin"); then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # app enviros
-export TERMEXEC="$TERM -e"
-export TERM=xterm-256color
+#DONT SET BECAUSE THIS WILL BREAK TMUX
+# export TERM=xterm-256color 
 export EDITOR="nvim"
 export FILEMAN=thunar
 export VIDPLAYER=mpv
@@ -129,6 +133,13 @@ alias gcus="git commit"
 alias gp="git push"
 alias push="git push"
 
+# tmux aliases
+alias tn="tmux new"
+alias ta="tmux attach"
+alias tk="tmux kill-session"
+alias tx="tmux kill-server"
+alias tls="tmux ls"
+
 # Term-Specific Config
 alias ref="source ~/.config/zsh/.zshrc"
 
@@ -169,49 +180,12 @@ alias nettest="ping theoryware.net"
 # }}}
 
 # {{{ functions
-conf() {
-	opts=$(echo "awesome\nnvim\nzsh\npicom\nrofi\nscripts" | fzf --height=7 --border )
-	case $opts in
-		"awesome")
-			nvim -c ":cd ~/.config/awesome"
-			;;
-		"nvim")
-			nvim -c ":cd ~/.config/nvim"
-			;;
-		"zsh")
-			nvim -c ":cd ~/.config/zsh"
-			;;
-		"picom")
-			nvim -c ":cd ~/.config/picom"
-			;;
-		"rofi")
-			nvim -c ":cd ~/.config/rofi"
-			;;
-		"ncmpcpp")
-			nvim -c ":cd ~/.config/ncmpcpp"
-			;;
-		"mpd")
-			nvim -c ":cd ~/.config/mpd"
-			;;
-		"mpv")
-			nvim -c ":cd ~/.config/mpv"
-			;;
-		"scripts")
-			nvim -c ":cd ~/.config/scripts"
-			;;
-		*)
-			echo "Invalid Argument"
-			;;
-	esac
+ce() {
+	find ~/.config -maxdepth 1 -type d | sed "s/\/home\/theorytoe/~/" | fzf --height=50% --layout=reverse | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim -c ":cd {}"
 }
 
-edscr() {
-	opts=$(ls "$HOME/.config/scripts" | fzf --height=7 --border --layout=reverse )
-	if [ -z $opts ]; then
-		echo "Cancelled"
-	else
-		nvim "$HOME/.config/scripts/$opts" -c ":cd ~/.config/scripts"
-	fi
+se() {
+	find ~/.config/scripts -type f | sed "s/\/home\/theorytoe/~/" | fzf --height=20 --layout=reverse | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim "{}"
 }
 
 lfcd () {
@@ -274,27 +248,26 @@ qgiph() {
 }
 
 session() {
-    abduco -c "$1"
+    tmux new -s "$1"
 }
 
 sessions() {
-    abduco -l
+    tmux ls
 }
 
 attach() {
-    abduco -A "$1"
+    tmux attach -t "$1"
 }
 restore() {
-    abduco -A "$1"
+    tmux attach -t "$1"
 }
 # }}}
 
 #{{{ snag plugins
 source ~/repos/snag/snag.zsh
 
-snag-use "zsh-users/zsh-syntax-highlighting"
+snag-use "zdharma/fast-syntax-highlighting"
 snag-use "zsh-users/zsh-autosuggestions"
-snag-use "zpm-zsh/clipboard"
 snag-use "ael-code/zsh-colored-man-pages" "colored-man-pages"
 snag-use "joshskidmore/zsh-fzf-history-search"
 snag-use "aloxaf/fzf-tab"
@@ -302,9 +275,10 @@ snag-use "chipsenkbeil/zsh-notes"
 snag-use "urbainvaes/fzf-marks"
 snag-use "nullsense/fuzzy-sys"
 
+# snag-use "zsh-users/zsh-syntax-highlighting"
 #}}}
 
-if [ -n "$visual_studio" ]; then
+if [ "$TERM" = "screen-256color" ]; then
     :
 else
     neofetch

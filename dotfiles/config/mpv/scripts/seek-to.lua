@@ -153,4 +153,4 @@ function set_inactive()
     active = false
 end
 
-mp.add_key_binding("c", "toggle-seeker", function() if active then set_inactive() else set_active() end end)
+mp.add_key_binding("C", "toggle-seeker", function() if active then set_inactive() else set_active() end end)

@@ -1,6 +1,7 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
 local keys = require('config.keys')
+-- local dpi = require('beautiful.xresources').apply_dpi
 
 tags = root.tags()
 
@@ -9,8 +10,8 @@ awful.rules.rules = {
 	{
 		rule = {},
 		properties = {
-			border_width = beautiful.border_width,
-			border_color = beautiful.border_normal,
+			border_width = 1,
+			border_color = "#2b3339",
 			focus = awful.client.focus.filter,
 			raise = true,
 			keys = keys.clientkeys,

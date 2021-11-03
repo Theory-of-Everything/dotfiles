@@ -63,6 +63,9 @@ dotfiles:
   f_config.conf:
     src: config/neofetch/config.conf
     dst: ~/.config/neofetch/config.conf
+  f_tmux.conf:
+    src: config/tmux/tmux.conf
+    dst: ~/.config/tmux/tmux.conf
 profiles:
   inkmachine:
     dotfiles:
@@ -86,3 +89,4 @@ profiles:
     - d_rofi
     - d_x11
     - f_config.conf
+    - f_tmux.conf

@@ -1,7 +1,7 @@
 clear
 
 
-# {{{ compinit
+# {{{ compinit/autoload
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -10,29 +10,37 @@ zstyle ':completion:*' menu select=5
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle :compinstall filename '/home/theorytoe/.config/zsh/.zshrc'
 
+# autoload
 autoload -Uz compinit promptinit
 autoload -U colors && colors
+autoload edit-command-line; zle -N edit-command-line
+autoload -Uz vcs_info
 compinit
 promptinit
 # }}}
 
 # {{{ opts
 zle_highlight=('paste:none')
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+# RPROMPT='${vcs_info_msg_0_}'
+zstyle ':vcs_info:git:*' formats '%b '
 
 # PS1 Prompt
-PS1="%B%F{green}[%n@%m\ %F{red}%1~%F{green}]%F{blue}%F{green} => %f%b"
-PS2="%B%F{green}[%F{red}*%F{green}] =>%f%b "
+PS1='%B%F{green}[%n@%m\ %F{blue}${vcs_info_msg_0_}%F{green}%F{red}%1~%F{green}]%F{blue}%F{green} => %f%b'
+PS2='%B%F{green}[%F{red}*%F{green}] => %f%b '
 
 bindkey -v
 
 xset r rate 215 45
+xset m 0 0
 
 HISTFILE=~/.config/zsh/.zhist
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd
 unsetopt beep
-
 
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
@@ -48,11 +56,15 @@ function zle-keymap-select {
         echo -ne '\e[5 q'
     fi
 }
+
+bindkey '^e' edit-command-line
+
 zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
+
 zle -N zle-line-init
 echo -ne '\e[5 q'                # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
@@ -181,11 +193,11 @@ alias nettest="ping theoryware.net"
 
 # {{{ functions
 ce() {
-	find ~/.config -maxdepth 1 -type d | sed "s/\/home\/theorytoe/~/" | fzf --height=50% --layout=reverse | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim -c ":cd {}"
+	find ~/.config -maxdepth 1 -type d | sed "s/\/home\/theorytoe/~/" | fzf --height=50% --layout=reverse --border | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim -c ":cd {}"
 }
 
 se() {
-	find ~/.config/scripts -type f | sed "s/\/home\/theorytoe/~/" | fzf --height=20 --layout=reverse | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim "{}"
+	find ~/.config/scripts -type f | sed "s/\/home\/theorytoe/~/" | fzf --height=20 --layout=reverse --border | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim "{}"
 }
 
 lfcd () {
@@ -243,6 +255,10 @@ transfer() {
     fi
 }
 
+t() {
+	tmux attach -t $(tmux ls | awk '{print $1}' | sed "s/://g" | fzf --layout=reverse --height=30% --border)
+}
+
 qgiph() {
 	giph -s -d 3 --verbose "$1.mp4"
 }
@@ -282,4 +298,11 @@ if [ "$TERM" = "screen-256color" ]; then
     :
 else
     neofetch
+	# mafetch
 fi
+
+alias luamake=/home/theorytoe/repos/lua-language-server/3rd/luamake/luamake
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

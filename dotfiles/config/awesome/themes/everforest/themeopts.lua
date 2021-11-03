@@ -4,14 +4,14 @@
 --------------------------------
 
 local themes_path = os.getenv('HOME') .. '/.config/awesome/themes/everforest/'
+local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 
--- {{{ Main
 local theme = {}
--- }}}
 
 -- {{{ Styles
 theme.font = 'cozette 10'
+-- theme.font = 'agave Nerd Font Mono 9'
 
 -- {{{ Colors
 theme.fg_normal = '#d3c6aa'
@@ -74,9 +74,14 @@ theme.menu_width = dpi(100)
 -- {{{ Taglist
 -- theme.taglist_squares_sel = themes_path .. 'taglist/squarefz.png'
 -- theme.taglist_squares_unsel = themes_path .. 'taglist/squarez.png'
--- theme.taglist_squares_resize = "false"
-theme.taglist_squares_sel = themes_path .. 'taglist/bar1fz.png'
-theme.taglist_squares_unsel = themes_path .. 'taglist/bar1z.png'
+-- theme.taglist_squares_resize = true
+-- theme.taglist_squares_sel = themes_path .. 'taglist/bar1fz.png'
+-- theme.taglist_squares_unsel = themes_path .. 'taglist/bar1z.png'
+-- theme.taglist_squares_sel = themes_path .. 'taglist/barf.png'
+-- theme.taglist_squares_unsel = themes_path .. 'taglist/bar.png'
+theme.taglist_squares_sel = beautiful.theme_assets.taglist_squares_sel(5, theme.fg_normal)
+theme.taglist_squares_unsel = beautiful.theme_assets.taglist_squares_unsel(5, theme.fg_focus)
+-- theme.taglist_bg_occupied = "#445055"
 -- }}}
 
 -- {{{ Misc
@@ -139,5 +144,3 @@ theme.notification_max_width = 500
 -- }}}
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

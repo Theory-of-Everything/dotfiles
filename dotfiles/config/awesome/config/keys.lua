@@ -10,11 +10,15 @@ local keys = {}
 
 -- {{{ Keyboard bindings
 keys.globalkeys = gears.table.join(
+
+	-- {{{ Misc
 	awful.key({ modkey }, 'comma', hotkeys_popup.show_help, { description = 'show help', group = 'awesome' }),
 	awful.key({ modkey }, 'bracketleft', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
 	awful.key({ modkey }, 'bracketright', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
 	awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
+	-- }}}
 
+	-- {{{ Client manipulation
 	awful.key({ modkey }, 'j', function()
 		awful.client.focus.byidx(1)
 	end, {
@@ -27,14 +31,6 @@ keys.globalkeys = gears.table.join(
 		description = 'focus previous by index',
 		group = 'client',
 	}),
-	awful.key({ modkey }, 'F1', function()
-		powermenu:show()
-	end, {
-		description = 'show main menu',
-		group = 'awesome',
-	}),
-
-	-- Layout manipulation
 	awful.key({ modkey, 'Shift' }, 'j', function()
 		awful.client.swap.byidx(1)
 	end, {
@@ -60,17 +56,19 @@ keys.globalkeys = gears.table.join(
 		group = 'screen',
 	}),
 	awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
-
-	-- Standard program
-	awful.key({ modkey }, 'Return', function()
-		awful.spawn(terminal)
+	awful.key({ modkey, 'Control' }, 'n', function()
+		local c = awful.client.restore()
+		-- Focus restored client
+		if c then
+			c:emit_signal('request::activate', 'key.unminimize', { raise = true })
+		end
 	end, {
-		description = 'open a terminal',
-		group = 'launcher',
+		description = 'restore minimized',
+		group = 'client',
 	}),
-	awful.key({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
-	awful.key({ modkey, 'Shift' }, 'q', awesome.quit, { description = 'quit awesome', group = 'awesome' }),
+	-- }}}
 
+	-- {{{ Layout manipulation
 	awful.key({ modkey }, 'l', function()
 		awful.tag.incmwfact(0.05)
 	end, {
@@ -119,19 +117,21 @@ keys.globalkeys = gears.table.join(
 		description = 'select previous',
 		group = 'layout',
 	}),
+	-- }}}
 
-	awful.key({ modkey, 'Control' }, 'n', function()
-		local c = awful.client.restore()
-		-- Focus restored client
-		if c then
-			c:emit_signal('request::activate', 'key.unminimize', { raise = true })
-		end
+	-- {{{ Standard programs
+
+	-- {{{ terminal
+	awful.key({ modkey }, 'Return', function()
+		awful.spawn(terminal)
 	end, {
-		description = 'restore minimized',
-		group = 'client',
+		description = 'open a terminal',
+		group = 'launcher',
 	}),
+	-- }}}
 
-	-- Prompt
+	-- {{{ Launchers
+	-- Program Launcher
 	awful.key({ modkey }, 'q', function()
 		awful.spawn.with_shell('rofi -show run ')
 	end, {
@@ -139,38 +139,6 @@ keys.globalkeys = gears.table.join(
 		group = 'launcher',
 	}),
 
-	awful.key({ modkey }, 'Tab', function()
-		awful.spawn.with_shell('rofi -show window ')
-	end, {
-		description = 'window swtch promt',
-		group = 'launcher',
-	}),
-
-	awful.key({ modkey }, 'g', function()
-		awful.spawn.with_shell('~/.config/scripts/gamelauncher.sh')
-	end, {
-		description = 'game launcher',
-		group = 'launcher',
-	}),
-
-	awful.key({ modkey }, 'x', function()
-		awful.prompt.run({
-			prompt = 'Run Lua code: ',
-			textbox = awful.screen.focused().mypromptbox.widget,
-			exe_callback = awful.util.eval,
-			history_path = awful.util.get_cache_dir() .. '/history_eval',
-		})
-	end, {
-		description = 'lua execute prompt',
-		group = 'awesome',
-	}),
-	-- Menubar
-	awful.key({ modkey }, 'p', function()
-		menubar.show()
-	end, {
-		description = 'show the menubar',
-		group = 'launcher',
-	}),
 	-- Power State Ctl
 	awful.key({ modkey }, 'F12', function()
 		awful.spawn.with_shell(scriptdir .. '/pwrctl.sh')
@@ -179,6 +147,24 @@ keys.globalkeys = gears.table.join(
 		group = 'launcher',
 	}),
 
+	-- Client Switcher
+	awful.key({ modkey }, 'Tab', function()
+		awful.spawn.with_shell('rofi -show window ')
+	end, {
+		description = 'window swtch promt',
+		group = 'launcher',
+	}),
+
+	-- gamelauncher (doesnt work)
+	awful.key({ modkey }, 'g', function()
+		awful.spawn.with_shell('~/.config/scripts/gamelauncher.sh')
+	end, {
+		description = 'game launcher',
+		group = 'launcher',
+	}),
+	-- }}}
+
+	-- {{{ Screenshots
 	-- Scrots
 	-- Full Scrot
 	awful.key({ modkey }, 'Insert', function()
@@ -194,6 +180,9 @@ keys.globalkeys = gears.table.join(
 		description = 'take a screen clip (playerctl)',
 		group = 'utils',
 	}),
+	-- }}}
+
+	-- {{{ Media control (mpd + ncspot)
 	-- playerctl music control
 	awful.key({ modkey }, 'F5', function()
 		musicctl.playback_previous()
@@ -219,6 +208,28 @@ keys.globalkeys = gears.table.join(
 		description = 'switch playerctl mode',
 		group = 'music',
 	}),
+	-- }}}
+
+	-- {{{ Misc
+	-- execute lua code
+	awful.key({ modkey }, 'x', function()
+		awful.prompt.run({
+			prompt = 'Run Lua code: ',
+			textbox = awful.screen.focused().mypromptbox.widget,
+			exe_callback = awful.util.eval,
+			history_path = awful.util.get_cache_dir() .. '/history_eval',
+		})
+	end, {
+		description = 'lua execute prompt',
+		group = 'awesome',
+	}),
+	-- Menubar
+	awful.key({ modkey }, 'p', function()
+		menubar.show()
+	end, {
+		description = 'show the menubar',
+		group = 'launcher',
+	}),
 
 	-- scratchpad keys
 	awful.key({ modkey }, 'F11', function()
@@ -226,10 +237,20 @@ keys.globalkeys = gears.table.join(
 	end, {
 		description = 'Open Terminal Scratch',
 		group = 'scratch',
-	})
+	}),
+	-- }}}
+
+	-- }}}
+
+	-- {{{ WM control
+	awful.key({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
+	awful.key({ modkey, 'Shift' }, 'q', awesome.quit, { description = 'quit awesome', group = 'awesome' })
+	-- }}}
 )
 
--- Bind all key numbers to tags.
+-- {{{ Tag manipulation
+
+-- {{{ Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
@@ -283,8 +304,9 @@ for i = 1, 9 do
 		})
 	)
 end
+-- }}}
 
--- keybinds for each individual window (client) that is window-speciphic
+-- {{{ Per-window client keybinds
 keys.clientkeys = gears.table.join(
 	awful.key({ modkey }, 'f', function(c)
 		c.fullscreen = not c.fullscreen
@@ -350,7 +372,9 @@ keys.clientkeys = gears.table.join(
 		group = 'client',
 	})
 )
--- end keyboard bindings }}}
+-- }}}
+
+-- }}}
 
 -- {{{ Mouse bindings
 keys.taglist_buttons = gears.table.join(

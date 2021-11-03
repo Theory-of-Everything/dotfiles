@@ -4,7 +4,10 @@ local themes_dir = os.getenv('HOME') .. '/.config/awesome/themes'
 
 local M = {}
 
+M.current_awesome_theme = nil
+
 M.set_awesome_theme = function(arg)
+	M.current_awesome_theme = arg
 	local selected_theme = '/' .. arg
 	beautiful.init(themes_dir .. selected_theme .. '/themeopts.lua')
 end
@@ -15,6 +18,7 @@ M.set_xres_theme = function(arg)
 end
 
 M.set_global_theme = function(choice)
+	M.current_awesome_theme = choice
 	M.set_xres_theme(choice)
 	M.set_awesome_theme(choice)
 end

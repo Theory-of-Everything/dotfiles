@@ -12,7 +12,7 @@ M.switch_mode = function()
 		naughty.notify({
 			text = 'Switched playerctl mode to ' .. M.current_mode,
 			title = 'Playerctl Switcher',
-			icon = '~/.config/awesome/resources/icons/playlist-music-outline.png',
+			icon = os.getenv('HOME') .. '/.config/awesome/resources/icons/playlist-music-outline.png',
 			run = function()
 				awful.spawn.with_shell('urxvt -e ncspot')
 			end,
@@ -22,7 +22,8 @@ M.switch_mode = function()
 		naughty.notify({
 			text = 'Switched playerctl mode to ' .. M.current_mode,
 			title = 'Playerctl Switcher',
-			icon = '~/.config/awesome/resources/icons/playlist-music-outline.png',
+			icon = os.getenv('HOME') .. '/.config/awesome/resources/icons/playlist-music-outline.png',
+			icon_size = 200,
 			run = function()
 				awful.spawn.with_shell('urxvt -e ncmpcpp')
 			end,

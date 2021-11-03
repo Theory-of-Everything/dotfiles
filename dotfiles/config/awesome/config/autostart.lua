@@ -33,4 +33,4 @@ awful.spawn.with_shell('pgrep -x monerod > /dev/null/ || monerod')
 
 -- misc
 awful.spawn.with_shell('pgrep -x tmux new-session -d -s ncspot ncspot > /dev/null/ || tmux new-session -d -s ncspot ncspot')
--- awful.spawn.with_shell('pgrep -x element-desktop > /dev/null/ || element-desktop')
+awful.spawn.with_shell('pgrep -x tmux new-session -d -s gomuks zsh > /dev/null/ || tmux new-session -d -s gomuks zsh')

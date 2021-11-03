@@ -3,7 +3,7 @@
 --    By Adrian C. (anrxc)   --
 -------------------------------
 
-local themes_path = "/home/theorytoe/.config/awesome/themes/"
+local themes_path = os.gentenv('HOME') .. ".config/awesome/themes/"
 local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main

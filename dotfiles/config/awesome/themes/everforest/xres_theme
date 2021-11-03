@@ -10,6 +10,11 @@ urxvt.background: [80]#2b3339
 
 !urxvt Font Config
 urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
+
+! Cozette font
+!urxvt.font: xft:Cozette:style=Regular:pixelsize=10
+!urxvt.letterSpace: -4
+
 urxvt.resize-font.smaller: C-M-j
 urxvt.resize-font.bigger: C-M-k
 

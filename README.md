@@ -28,8 +28,8 @@ Dotfiles in basic essence are the Unix version of Windows hidden files. Unlike W
 ## Keybinds:
 #### Window Manipultion:
 - <kbd> Mod </kbd> + <kbd> w </kbd> : Close/Kill Window 
-- <kbd> Mod </kbd> + <kbd> j </kbd> / <kbd> J </kbd> : Focus Up/Down Stack
-- <kbd> Mod </kbd> + <kbd> h </kbd> / <kbd> L </kbd> : Master Node Width Left/Right
+- <kbd> Mod </kbd> + <kbd> j </kbd> / <kbd> k </kbd> : Focus Up/Down Stack
+- <kbd> Mod </kbd> + <kbd> h </kbd> / <kbd> l </kbd> : Master Node Width Left/Right
 - <kbd> Mod </kbd> + <kbd> e </kbd> : Pull Window to Master Node 
 
 #### Tags

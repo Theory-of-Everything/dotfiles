@@ -11,39 +11,40 @@ local fs_wid = require('widget.fs-widget.fs-widget')
 local systray_wid = wibox.widget.systray()
 systray_wid:set_base_size(20)
 systray_wid:set_horizontal(false)
-local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 1)
+local clock_time = wibox.widget.textclock(' %l:%M.%S ', 1)
+local clock_date = wibox.widget.textclock(' %m/%d/%y ', 1)
 -- }}}
 
 -- {{{ Init func
 local function set_bar(s)
 	s.wibox = awful.wibar({
-		position = 'right',
+		position = 'left',
 		screen = s,
 		ontop = false,
-		width = '26',
+		width = '32',
 		bg = '#00000000',
 	})
 
--- {{{ layoutbox
-local layoutbox = awful.widget.layoutbox({
-	screen = s,
-	-- Add buttons, allowing you to change the layout
-	buttons = {
-		awful.button({}, 1, function()
-			awful.layout.inc(1)
-		end),
-		awful.button({}, 3, function()
-			awful.layout.inc(-1)
-		end),
-		awful.button({}, 4, function()
-			awful.layout.inc(1)
-		end),
-		awful.button({}, 5, function()
-			awful.layout.inc(-1)
-		end),
-	},
-})
--- }}}
+	-- {{{ layoutbox
+	local layoutbox = awful.widget.layoutbox({
+		screen = s,
+		-- Add buttons, allowing you to change the layout
+		buttons = {
+			awful.button({}, 1, function()
+				awful.layout.inc(1)
+			end),
+			awful.button({}, 3, function()
+				awful.layout.inc(-1)
+			end),
+			awful.button({}, 4, function()
+				awful.layout.inc(1)
+			end),
+			awful.button({}, 5, function()
+				awful.layout.inc(-1)
+			end),
+		},
+	})
+	-- }}}
 
 	-- {{{ Taglist
 	local taglist = awful.widget.taglist({
@@ -51,6 +52,7 @@ local layoutbox = awful.widget.layoutbox({
 		filter = awful.widget.taglist.filter.all,
 		style = {
 			shape = gears.shape.rectangle,
+			bg_focus = beautiful.bg_normal,
 		},
 		layout = {
 			layout = wibox.layout.fixed.vertical,
@@ -98,7 +100,7 @@ local layoutbox = awful.widget.layoutbox({
 			shape = gears.shape.rectangle,
 		},
 		layout = {
-			layout = wibox.layout.flex.vertical,
+			layout = wibox.layout.fixed.vertical,
 		},
 		widget_template = {
 			{
@@ -114,15 +116,15 @@ local layoutbox = awful.widget.layoutbox({
 						},
 						widget = wibox.container.rotate,
 					},
-					{
-						{
-							id = 'text_role',
-							widget = wibox.widget.textbox,
-						},
-						widget = wibox.container.rotate,
-						direction = 'west',
-					},
-					layout = wibox.layout.fixed.vertical,
+					-- {
+					-- 	{
+					-- 		id = 'text_role',
+					-- 		widget = wibox.widget.textbox,
+					-- 	},
+					-- 	widget = wibox.container.rotate,
+					-- 	direction = 'west',
+					-- },
+					-- layout = wibox.layout.fixed.vertical,
 				},
 				top = 1,
 				bottom = 1,
@@ -142,55 +144,68 @@ local layoutbox = awful.widget.layoutbox({
 		bg = '#00000000',
 		{
 			layout = wibox.container.margin,
-			left = 0,
+			left = 5,
 			top = 9,
 			bottom = 9,
-			right = 5,
+			right = 0,
 			{
 				layout = wibox.container.background,
 				-- shape = gears.shape.rounded_bar,
 				bg = beautiful.bg_normal,
 				{
-					layout = wibox.layout.align.vertical,
+					layout = wibox.container.margin,
+					margins = 4,
 					{
-						layout = wibox.layout.fixed.vertical,
-						-- launcher,
-						taglist,
-						s.mypromptbox,
-					},
-					-- nil,
-					tasklist,
-					-- {
-					-- 	widget = wibox.widget.textbox,
-					-- 	-- layout = wibox.container.rotate,
-					-- 	-- direction = "east",
-					-- 	text = "セオリー",
-					-- 	expand = "none"
-					-- },
-					{
-						layout = wibox.container.margin,
-						margins = 0,
+						layout = wibox.layout.align.vertical,
 						{
 							layout = wibox.layout.fixed.vertical,
-							fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
+							-- launcher,
+							taglist,
+							s.mypromptbox,
+						},
+						-- nil,
+						tasklist,
+						{
+							layout = wibox.container.margin,
+							margins = 0,
 							{
-								widget = wibox.container.rotate,
-								direction = 'west',
-								clock,
-							},
-							systray_wid,
-							{
-								layoutbox,
-								widget = wibox.container.margin,
-								top = 5,
-								left = 1,
-								right = 1,
-							},
-							{
-								widget = wibox.container.rotate,
-								direction = 'west',
+								layout = wibox.layout.fixed.vertical,
+								fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
+
 								{
-									widget = wibox.widget.textbox(' | '),
+									{
+										{
+											widget = wibox.container.rotate,
+											direction = 'west',
+											{
+												widget = wibox.widget.textbox,
+												text = '⏼',
+												clock_time,
+											},
+										},
+										layout = wibox.widget.background,
+										bg = beautiful.bg_focus,
+										-- 
+									},
+									layout = wibox.container.margin,
+									top = 1,
+									bottom = 1,
+								},
+
+								systray_wid,
+								{
+									layoutbox,
+									widget = wibox.container.margin,
+									top = 5,
+									left = 1,
+									right = 1,
+								},
+								{
+									widget = wibox.container.rotate,
+									direction = 'west',
+									{
+										widget = wibox.widget.textbox(' | '),
+									},
 								},
 							},
 						},

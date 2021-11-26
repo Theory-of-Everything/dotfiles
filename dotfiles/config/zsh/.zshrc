@@ -47,10 +47,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(history)
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
     if [[ ${KEYMAP} == vicmd ]] ||
-        [[ $1 = 'block' ]]; then
+		[[ $1 = 'block' ]]; then
         echo -ne '\e[1 q'
     elif [[ ${KEYMAP} == main ]] ||
-        [[ ${KEYMAP} == viins ]] ||
+		[[ ${KEYMAP} == viins ]] ||
         [[ ${KEYMAP} = '' ]] ||
         [[ $1 = 'beam' ]]; then
         echo -ne '\e[5 q'
@@ -103,11 +103,13 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export COLORTERM="truecolor"
 
+# export SUDO_PROMPT="[sudo] PASSWORD NOW RETARD!!!  "
+
 # other enviros
 export MPD_OPTS="$HOME/.conf/mpd/mpd.conf"
 # }}}
 
-# {{{aliases
+# {{{ Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
@@ -185,6 +187,10 @@ alias neoconf="$EDITOR ~/.config/neofetch/config.conf"
 
 # pacman aliases
 alias sysup="sudo pacman -Syu"
+
+# misc aliases
+alias vie='nvim $(fzf)'
+alias xo='xdg-open $(fzf)'
 
 # Testing Aliases
 alias testwm="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
@@ -279,7 +285,7 @@ restore() {
 }
 # }}}
 
-#{{{ snag plugins
+# {{{ snag plugins
 source ~/repos/snag/snag.zsh
 
 snag-use "zdharma/fast-syntax-highlighting"
@@ -292,7 +298,7 @@ snag-use "urbainvaes/fzf-marks"
 snag-use "nullsense/fuzzy-sys"
 
 # snag-use "zsh-users/zsh-syntax-highlighting"
-#}}}
+# }}}
 
 if [ "$TERM" = "screen-256color" ]; then
     :
@@ -302,7 +308,4 @@ else
 fi
 
 alias luamake=/home/theorytoe/repos/lua-language-server/3rd/luamake/luamake
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

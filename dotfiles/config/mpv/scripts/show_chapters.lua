@@ -3,7 +3,7 @@
 
 ----------------------------------------
 CHAPTERS_TO_SHOW = 10
-HOTKEY = 'Meta+c'
+HOTKEY = 'Alt+c'
 
 FONT_SCALE = 80         -- in % from osd-font-size
 FONT_SCALE_inactive_chapters = 75

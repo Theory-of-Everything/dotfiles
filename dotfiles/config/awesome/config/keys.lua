@@ -13,8 +13,8 @@ keys.globalkeys = gears.table.join(
 
 	-- {{{ Misc
 	awful.key({ modkey }, 'comma', hotkeys_popup.show_help, { description = 'show help', group = 'awesome' }),
-	awful.key({ modkey }, 'bracketleft', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
-	awful.key({ modkey }, 'bracketright', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
+	awful.key({ modkey }, 'u', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
+	awful.key({ modkey }, 'i', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
 	awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
 	-- }}}
 
@@ -55,7 +55,7 @@ keys.globalkeys = gears.table.join(
 		description = 'focus the previous screen',
 		group = 'screen',
 	}),
-	awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
+	awful.key({ modkey }, 'y', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
 	awful.key({ modkey, 'Control' }, 'n', function()
 		local c = awful.client.restore()
 		-- Focus restored client

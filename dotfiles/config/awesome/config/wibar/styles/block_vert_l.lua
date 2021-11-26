@@ -12,8 +12,21 @@ local systray_wid = wibox.widget.systray()
 systray_wid:set_base_size(20)
 systray_wid:set_horizontal(false)
 local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 1)
+-- }}}
+
+-- {{{ Init func
+local function set_bar(s)
+	s.wibox = awful.wibar({
+		position = 'left',
+		screen = s,
+		ontop = false,
+		width = '26',
+		bg = '#00000000',
+	})
+
+-- {{{ layoutbox
 local layoutbox = awful.widget.layoutbox({
-	screen = screen.primary,
+	screen = s,
 	-- Add buttons, allowing you to change the layout
 	buttons = {
 		awful.button({}, 1, function()
@@ -31,16 +44,6 @@ local layoutbox = awful.widget.layoutbox({
 	},
 })
 -- }}}
-
--- {{{ Init func
-local function set_bar(s)
-	s.wibox = awful.wibar({
-		position = 'left',
-		screen = s,
-		ontop = false,
-		width = '26',
-		bg = '#00000000',
-	})
 
 	-- {{{ Taglist
 	local taglist = awful.widget.taglist({
@@ -117,7 +120,7 @@ local function set_bar(s)
 							widget = wibox.widget.textbox,
 						},
 						widget = wibox.container.rotate,
-						direction = 'east',
+						direction = 'west',
 					},
 					layout = wibox.layout.fixed.vertical,
 				},
@@ -155,9 +158,20 @@ local function set_bar(s)
 						taglist,
 						s.mypromptbox,
 					},
+					-- nil,
 					tasklist,
 					-- {
-
+					-- {
+					-- {
+					-- 	widget = wibox.widget.textbox,
+					-- 	text = 'セオリー',
+					-- },
+					-- widget = wibox.container.rotate,
+					-- direction = 'east',
+					-- },
+					-- widget = wibox.widget.background,
+					-- layout = wibox.container.align,
+					-- expand = "none",
 					-- },
 					{
 						layout = wibox.container.margin,
@@ -167,14 +181,20 @@ local function set_bar(s)
 							fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
 							{
 								widget = wibox.container.rotate,
-								direction = 'east',
+								direction = 'west',
 								clock,
 							},
 							systray_wid,
-							layoutbox,
+							{
+								layoutbox,
+								widget = wibox.container.margin,
+								top = 5,
+								left = 1,
+								right = 1,
+							},
 							{
 								widget = wibox.container.rotate,
-								direction = 'east',
+								direction = 'west',
 								{
 									widget = wibox.widget.textbox(' | '),
 								},

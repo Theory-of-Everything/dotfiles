@@ -6,7 +6,7 @@
 --
 -- Theory's AwesomeWM Configs
 --
---{{{ Libraries
+-- {{{ Libraries
 local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
@@ -23,10 +23,11 @@ local themeloader = require('lib.themeloader')
 local bling = require('bling')
 require('config')
 require('misc')
---}}}
+-- }}}
 
 -- {{{ Variable definitions
 themeloader.set_global_theme('everforest')
+-- themeloader.set_global_theme('bluewery')
 -- themeloader.set_xres_theme('oxide')
 -- themeloader.set_awesome_theme('everforest')
 
@@ -78,6 +79,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Each screen has its own tag table.
 	awful.tag({ '1', '2', '3', '4', '5', '6', '7', '8', '9' }, s, awful.layout.layouts[1])
+	-- awful.tag({ '一', '二', '三', '四', '五', '六', 'セ', '八', '九' }, s, awful.layout.layouts[1])
 
 	-- set wibars
 	if s == screen.primary then
@@ -87,7 +89,7 @@ awful.screen.connect_for_each_screen(function(s)
 		bar.set_bar_style('block_vert_r')
 		bar.init(s)
 	end
-	-- bar.set_bar_style("block")
+	-- bar.set_bar_style("tile")
 	-- bar.init(s)
 end)
 -- }}}
@@ -100,6 +102,13 @@ root.buttons(keys.desktop_buttons)
 root.keys(keys.globalkeys)
 -- }}}
 
-require('giblet')
+-- local dash = require('gib.dash')
+-- local test = dash:new({
+-- 	opts = {
+-- 		name = 'bruh moment',
+-- 		placement = awful.placement.bottom,
+-- 	},
+-- })
+-- test:spawn()
 
--- # vim: filetype=lua foldmerhod=marker
+-- # vim: filetype=lua:foldmethod=marker

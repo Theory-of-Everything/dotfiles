@@ -26,7 +26,7 @@ local function set_bar(s)
 
 -- {{{ layoutbox
 local layoutbox = awful.widget.layoutbox({
-	screen = s,
+	screen = screen.primary,
 	-- Add buttons, allowing you to change the layout
 	buttons = {
 		awful.button({}, 1, function()

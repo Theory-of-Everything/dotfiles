@@ -66,6 +66,9 @@ dotfiles:
   f_tmux.conf:
     src: config/tmux/tmux.conf
     dst: ~/.config/tmux/tmux.conf
+  d_ncmpcpp:
+    src: config/ncmpcpp
+    dst: ~/.config/ncmpcpp
 profiles:
   inkmachine:
     dotfiles:
@@ -90,3 +93,4 @@ profiles:
     - d_x11
     - f_config.conf
     - f_tmux.conf
+    - d_ncmpcpp

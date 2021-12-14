@@ -83,6 +83,7 @@ append_path() {
 
 append_path "$HOME/.config/scripts"
 append_path "$HOME/.cargo/bin"
+append_path "$HOME/.emacs.d/bin"
 
 if [ -d "$HOME/.local/bin" ] && (! echo $PATH | grep -q "$HOME/.local/bin"); then
     export PATH="$HOME/.local/bin:$PATH"

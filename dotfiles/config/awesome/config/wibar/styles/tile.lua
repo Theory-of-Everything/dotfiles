@@ -6,6 +6,13 @@ local keys = require('config.keys')
 
 local M = {}
 
+--{{{ custom theme options
+beautiful.taglist_fg_focus = beautiful.fg_normal
+beautiful.taglist_bg_focus = beautiful.bg_normal
+beautiful.taglist_squares_sel = beautiful.theme_assets.taglist_squares_sel(5, beautiful.fg_normal)
+beautiful.taglist_squares_unsel = beautiful.theme_assets.taglist_squares_unsel(5, beautiful.bg_focus)
+--}}}
+
 -- {{{ Widgets
 local fs_wid = require('widget.fs-widget.fs-widget')
 local systray_wid = wibox.widget.systray()
@@ -21,7 +28,7 @@ local function set_bar(s)
 		position = 'left',
 		screen = s,
 		ontop = false,
-		width = '32',
+		width = '34',
 		bg = '#00000000',
 	})
 
@@ -60,29 +67,36 @@ local function set_bar(s)
 		widget_template = {
 			{
 				{
+
 					{
 						{
 							{
-								id = 'index_role',
+								{
+									id = 'index_role',
+									widget = wibox.widget.textbox,
+								},
+								margins = 0,
+								widget = wibox.container.margin,
+							},
+							{
+								id = 'text_role',
 								widget = wibox.widget.textbox,
 							},
-							margins = 0,
-							widget = wibox.container.margin,
+							layout = wibox.layout.fixed.vertical,
 						},
-						{
-							id = 'text_role',
-							widget = wibox.widget.textbox,
-						},
-						layout = wibox.layout.fixed.vertical,
+						halign = 'center',
+						widget = wibox.container.place,
 					},
-					halign = 'center',
-					widget = wibox.container.place,
+					top = 5,
+					bottom = 5,
+					widget = wibox.container.margin,
 				},
-				top = 5,
-				bottom = 5,
-				widget = wibox.container.margin,
+				id = 'background_role',
+				widget = wibox.container.background,
 			},
-			id = 'background_role',
+			id = 'bg',
+			bg = beautiful.green,
+			fg = beautiful.bg_normal,
 			widget = wibox.container.background,
 		},
 		buttons = keys.taglist_buttons,
@@ -154,7 +168,7 @@ local function set_bar(s)
 				bg = beautiful.bg_normal,
 				{
 					layout = wibox.container.margin,
-					margins = 4,
+					margins = 5,
 					{
 						layout = wibox.layout.align.vertical,
 						{
@@ -169,42 +183,48 @@ local function set_bar(s)
 							layout = wibox.container.margin,
 							margins = 0,
 							{
-								layout = wibox.layout.fixed.vertical,
-								fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
+								bg = beautiful.green,
+								fg = beautiful.bg_normal,
+								widget = wibox.widget.background,
 
 								{
+									layout = wibox.layout.fixed.vertical,
+									fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
+
+									-- {
+									-- 	{
+									-- 		{
+									-- 			widget = wibox.container.rotate,
+									-- 			direction = 'west',
+									-- 			{
+									-- 				widget = wibox.widget.textbox,
+									-- 				text = '⏼',
+									-- 			},
+									-- 			clock_time,
+									-- 		},
+									-- 		layout = wibox.widget.background,
+									-- 		bg = beautiful.bg_focus,
+									-- 		-- 
+									-- 	},
+									-- 	layout = wibox.container.margin,
+									-- 	top = 1,
+									-- 	bottom = 1,
+									-- },
+
+									systray_wid,
 									{
-										{
-											widget = wibox.container.rotate,
-											direction = 'west',
-											{
-												widget = wibox.widget.textbox,
-												text = '⏼',
-												clock_time,
-											},
-										},
-										layout = wibox.widget.background,
-										bg = beautiful.bg_focus,
-										-- 
+										layoutbox,
+										widget = wibox.container.margin,
+										top = 5,
+										left = 1,
+										right = 1,
 									},
-									layout = wibox.container.margin,
-									top = 1,
-									bottom = 1,
-								},
-
-								systray_wid,
-								{
-									layoutbox,
-									widget = wibox.container.margin,
-									top = 5,
-									left = 1,
-									right = 1,
-								},
-								{
-									widget = wibox.container.rotate,
-									direction = 'west',
 									{
-										widget = wibox.widget.textbox(' | '),
+										widget = wibox.container.rotate,
+										direction = 'west',
+										{
+											widget = wibox.widget.textbox(' | '),
+										},
 									},
 								},
 							},

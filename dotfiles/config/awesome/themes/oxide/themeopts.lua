@@ -4,6 +4,7 @@
 -------------------------------
 
 local themes_path = os.getenv('HOME') .. ".config/awesome/themes/oxide/"
+local beautiful = require('beautiful')
 local dpi = require('beautiful.xresources').apply_dpi
 
 -- {{{ Main
@@ -79,8 +80,10 @@ theme.menu_width = dpi(100)
 -- theme.taglist_squares_sel = themes_path .. 'taglist/squarefz.png'
 -- theme.taglist_squares_unsel = themes_path .. 'taglist/squarez.png'
 -- bar like ones
-theme.taglist_squares_sel = themes_path .. 'taglist/bar1fz.png'
-theme.taglist_squares_unsel = themes_path .. 'taglist/bar1z.png'
+-- theme.taglist_squares_sel = themes_path .. 'taglist/bar1fz.png'
+-- theme.taglist_squares_unsel = themes_path .. 'taglist/bar1z.png'
+theme.taglist_squares_sel = beautiful.theme_assets.taglist_squares_sel(5, theme.fg_normal)
+theme.taglist_squares_unsel = beautiful.theme_assets.taglist_squares_unsel(5, theme.fg_focus)
 --theme.taglist_squares_resize = 'false'
 -- }}}
 

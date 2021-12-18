@@ -6,12 +6,20 @@ local keys = require('config.keys')
 
 local M = {}
 
+--{{{ custom theme options
+--taglist colors
+beautiful.taglist_fg_focus = beautiful.fg_normal
+beautiful.taglist_bg_focus = beautiful.bg_focus
+beautiful.taglist_squares_sel = beautiful.theme_assets.taglist_squares_sel(5, beautiful.fg_normal)
+beautiful.taglist_squares_unsel = beautiful.theme_assets.taglist_squares_unsel(5, beautiful.bg_focus)
+-- }}}
+
 -- {{{ Widgets
 local fs_wid = require('widget.fs-widget.fs-widget')
 local systray_wid = wibox.widget.systray()
 systray_wid:set_base_size(20)
 systray_wid:set_horizontal(false)
-local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 1)
+local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 2)
 -- }}}
 
 -- {{{ Init func
@@ -20,30 +28,30 @@ local function set_bar(s)
 		position = 'right',
 		screen = s,
 		ontop = false,
-		width = '26',
+		width = '20',
 		bg = '#00000000',
 	})
 
--- {{{ layoutbox
-local layoutbox = awful.widget.layoutbox({
-	screen = s,
-	-- Add buttons, allowing you to change the layout
-	buttons = {
-		awful.button({}, 1, function()
-			awful.layout.inc(1)
-		end),
-		awful.button({}, 3, function()
-			awful.layout.inc(-1)
-		end),
-		awful.button({}, 4, function()
-			awful.layout.inc(1)
-		end),
-		awful.button({}, 5, function()
-			awful.layout.inc(-1)
-		end),
-	},
-})
--- }}}
+	-- {{{ layoutbox
+	local layoutbox = awful.widget.layoutbox({
+		screen = s,
+		-- Add buttons, allowing you to change the layout
+		buttons = {
+			awful.button({}, 1, function()
+				awful.layout.inc(1)
+			end),
+			awful.button({}, 3, function()
+				awful.layout.inc(-1)
+			end),
+			awful.button({}, 4, function()
+				awful.layout.inc(1)
+			end),
+			awful.button({}, 5, function()
+				awful.layout.inc(-1)
+			end),
+		},
+	})
+	-- }}}
 
 	-- {{{ Taglist
 	local taglist = awful.widget.taglist({
@@ -61,27 +69,37 @@ local layoutbox = awful.widget.layoutbox({
 					{
 						{
 							{
-								id = 'index_role',
-								widget = wibox.widget.textbox,
+								{
+									{
+										id = 'index_role',
+										widget = wibox.widget.textbox,
+										text = '',
+									},
+									margins = 0,
+									widget = wibox.container.margin,
+								},
+								layout = wibox.layout.fixed.vertical,
 							},
-							margins = 0,
-							widget = wibox.container.margin,
+							halign = 'center',
+							widget = wibox.container.place,
 						},
-						{
-							id = 'text_role',
-							widget = wibox.widget.textbox,
-						},
-						layout = wibox.layout.fixed.vertical,
+						top = 5,
+						bottom = 5,
+						widget = wibox.container.margin,
 					},
-					halign = 'center',
-					widget = wibox.container.place,
+					id = 'background_role',
+					widget = wibox.container.background,
 				},
-				top = 5,
-				bottom = 5,
-				widget = wibox.container.margin,
+				id = 'bg',
+				bg = beautiful.green,
+				fg = beautiful.bg_normal,
+				widget = wibox.container.background,
 			},
-			id = 'background_role',
-			widget = wibox.container.background,
+			layout = wibox.container.margin,
+			top = 1,
+			bottom = 1,
+			right = 3,
+			left = 3,
 		},
 		buttons = keys.taglist_buttons,
 	})
@@ -106,13 +124,17 @@ local layoutbox = awful.widget.layoutbox({
 					{
 						{
 							{
-								id = 'icon_role',
-								widget = wibox.widget.imagebox,
+								{
+									id = 'icon_role',
+									widget = wibox.widget.imagebox,
+								},
+								margins = 2,
+								widget = wibox.container.margin,
 							},
-							margins = 1,
-							widget = wibox.container.margin,
+							widget = wibox.container.rotate,
 						},
-						widget = wibox.container.rotate,
+						layout = wibox.container.margin,
+						top = 8,
 					},
 					{
 						{
@@ -122,7 +144,7 @@ local layoutbox = awful.widget.layoutbox({
 						widget = wibox.container.rotate,
 						direction = 'west',
 					},
-					layout = wibox.layout.fixed.vertical,
+					layout = wibox.layout.align.vertical,
 				},
 				top = 1,
 				bottom = 1,
@@ -142,49 +164,45 @@ local layoutbox = awful.widget.layoutbox({
 		bg = '#00000000',
 		{
 			layout = wibox.container.margin,
-			left = 0,
+			right = 4,
 			top = 9,
 			bottom = 9,
-			right = 5,
+			left = 0,
 			{
 				layout = wibox.container.background,
-				-- shape = gears.shape.rounded_bar,
+				shape = gears.shape.rounded_bar,
 				bg = beautiful.bg_normal,
 				{
 					layout = wibox.layout.align.vertical,
 					{
 						layout = wibox.layout.fixed.vertical,
+						{
+							layout = wibox.container.margin,
+							top = 10,
+							taglist,
+						},
 						-- launcher,
-						taglist,
 						s.mypromptbox,
 					},
-					-- nil,
 					tasklist,
-					-- {
-					-- 	widget = wibox.widget.textbox,
-					-- 	-- layout = wibox.container.rotate,
-					-- 	-- direction = "east",
-					-- 	text = "セオリー",
-					-- 	expand = "none"
-					-- },
 					{
 						layout = wibox.container.margin,
 						margins = 0,
 						{
 							layout = wibox.layout.fixed.vertical,
-							fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
+							-- fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
 							{
 								widget = wibox.container.rotate,
 								direction = 'west',
 								clock,
 							},
-							systray_wid,
+							-- systray_wid,
 							{
 								layoutbox,
 								widget = wibox.container.margin,
 								top = 5,
-								left = 1,
-								right = 1,
+								left = 2,
+								right = 2,
 							},
 							{
 								widget = wibox.container.rotate,

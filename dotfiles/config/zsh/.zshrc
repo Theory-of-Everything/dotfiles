@@ -84,6 +84,7 @@ append_path() {
 append_path "$HOME/.config/scripts"
 append_path "$HOME/.cargo/bin"
 append_path "$HOME/.emacs.d/bin"
+append_path "$HOME/.config/scripts"
 
 if [ -d "$HOME/.local/bin" ] && (! echo $PATH | grep -q "$HOME/.local/bin"); then
     export PATH="$HOME/.local/bin:$PATH"
@@ -92,7 +93,7 @@ fi
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # app enviros
-#DONT SET BECAUSE THIS WILL BREAK TMUX
+# DONT SET BECAUSE THIS WILL BREAK TMUX
 # export TERM=xterm-256color 
 export EDITOR="nvim"
 export FILEMAN=thunar
@@ -100,11 +101,12 @@ export VIDPLAYER=mpv
 export IMGVIEWER=feh
 export AUDPLAYER=cmus
 export WEBBROWSER=brave
+export MIXER=pulsemixer 
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export COLORTERM="truecolor"
 
-# export SUDO_PROMPT="[sudo] PASSWORD NOW RETARD!!!  "
+export SUDO_PROMPT="[sudo] PASSWORD NOW RETARD!!!  "
 
 # other enviros
 export MPD_OPTS="$HOME/.conf/mpd/mpd.conf"
@@ -113,6 +115,9 @@ export MPD_OPTS="$HOME/.conf/mpd/mpd.conf"
 # {{{ Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+
+# eviro vars
+alias mix="$MIXER"
 
 # vim-like shorcuts
 alias ':q'="exit"
@@ -129,7 +134,7 @@ alias kpass="keepassxc-cli open ~/.keepassxc/Passwords.kdbx"
 alias ftmime="xdg-mime query filetype"
 alias top="htop"
 alias gembrowse="amfora"
-alias ncmp="ncmpcpp"
+alias ncmp="ncmpcpp-ueberzug"
 alias mimetype="file --mime-type"
 alias rsync="rsync -uv"
 alias p="sudo pacman"
@@ -207,6 +212,10 @@ se() {
 	find ~/.config/scripts -type f | sed "s/\/home\/theorytoe/~/" | fzf --height=20 --layout=reverse --border | sed "s/~/\/home\/theorytoe/" | xargs -r -I {} nvim "{}"
 }
 
+mpv_playlist() {
+	ls | grep -vi .txt | sed "s/\.\///g" > playlist.txt
+}
+
 lfcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
@@ -270,20 +279,41 @@ qgiph() {
 	giph -s -d 3 --verbose "$1.mp4"
 }
 
-session() {
-    tmux new -s "$1"
+ttt() {
+	case $1 in 
+		*)
+			tt -n 15 -g 1 -showwpm -notheme;;
+		"normal")
+			tt -n 15 -g 1 -showwpm -notheme;;
+		"speed")
+			tt -n 5 -g 1 -showwpm -notheme;;
+		"groups")
+			tt -n 3 -g 5 -showwpm -notheme;;
+		"pain")
+			tt -n 30 -g 2 -showwpm -notheme;;
+		"standard")
+			tt -showwpm -notheme;;
+		"burst")
+			tt -n 10 -showwpm -notheme;;
+		"essay")
+			tt -n 40 -g 3 -showwpm -notheme -oneshot;;
+		"smol")
+			tt -n 1 -showwpm -notheme;;
+		"s")
+			tt -n 1 -g 15 -showwpm -notheme;;
+		"--help")
+			echo "OPTIONS:"
+			echo "normal (default)"
+			echo "groups"
+			echo "pain"
+			echo "standard"
+			echo "burst"
+			echo "essay"
+			echo "smol"
+			echo "s"
+	esac
 }
 
-sessions() {
-    tmux ls
-}
-
-attach() {
-    tmux attach -t "$1"
-}
-restore() {
-    tmux attach -t "$1"
-}
 # }}}
 
 # {{{ snag plugins

@@ -1,4 +1,4 @@
-!-------------------------URxvt Config
+!{{{-------------------------URxvt Config
 urxvt.perl-ext-common: clipboard,url-select,keyboard-select,resize-font
 
 urxvt.scrollBar: false
@@ -34,6 +34,18 @@ urxvt.keysym.M-s: perl:keyboard-select:search
 Xcursor.theme: goglus
 
 Xft*dpi: 109
+!}}}-------------------------------------
+
+!{{{------------------------------------xst config
+st.font: agave Nerd Font Mono:style=r:pixelsize=16
+
+st.borderpx: 10
+st.cursorblinkontype: 1
+st.scrollrate: 1
+st.opacity: 0.8
+
+st.undercurl_shape: 0
+!}}}
 
 !------------------------- Everforest theme
 ! special

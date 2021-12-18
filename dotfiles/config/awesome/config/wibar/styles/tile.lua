@@ -7,10 +7,28 @@ local keys = require('config.keys')
 local M = {}
 
 --{{{ custom theme options
+--taglist colors
 beautiful.taglist_fg_focus = beautiful.fg_normal
 beautiful.taglist_bg_focus = beautiful.bg_normal
 beautiful.taglist_squares_sel = beautiful.theme_assets.taglist_squares_sel(5, beautiful.fg_normal)
 beautiful.taglist_squares_unsel = beautiful.theme_assets.taglist_squares_unsel(5, beautiful.bg_focus)
+-- layout images
+-- beautiful.layout_tile = beautiful.themes_path .. 'layouts/dark_tile.png'
+-- beautiful.layout_tileleft = beautiful.themes_path .. 'layouts/dark_tileleft.png'
+-- beautiful.layout_tilebottom = beautiful.themes_path .. 'layouts/dark_tilebottom.png'
+-- beautiful.layout_tiletop = beautiful.themes_path .. 'layouts/dark_tiletop.png'
+-- beautiful.layout_fairv = beautiful.themes_path .. 'layouts/dark_fairv.png'
+-- beautiful.layout_fairh = beautiful.themes_path .. 'layouts/dark_fairh.png'
+-- beautiful.layout_spiral = beautiful.themes_path .. 'layouts/dark_spiral.png'
+-- beautiful.layout_dwindle = beautiful.themes_path .. 'layouts/dark_dwindle.png'
+-- beautiful.layout_max = beautiful.themes_path .. 'layouts/dark_max.png'
+-- beautiful.layout_fullscreen = beautiful.themes_path .. 'layouts/dark_fullscreen.png'
+-- beautiful.layout_magnifier = beautiful.themes_path .. 'layouts/dark_magnifier.png'
+-- beautiful.layout_floating = beautiful.themes_path .. 'layouts/dark_floating.png'
+-- beautiful.layout_cornernw = beautiful.themes_path .. 'layouts/dark_cornernw.png'
+-- beautiful.layout_cornerne = beautiful.themes_path .. 'layouts/dark_cornerne.png'
+-- beautiful.layout_cornersw = beautiful.themes_path .. 'layouts/dark_cornersw.png'
+-- beautiful.layout_cornerse = beautiful.themes_path .. 'layouts/dark_cornerse.png'
 --}}}
 
 -- {{{ Widgets
@@ -18,8 +36,7 @@ local fs_wid = require('widget.fs-widget.fs-widget')
 local systray_wid = wibox.widget.systray()
 systray_wid:set_base_size(20)
 systray_wid:set_horizontal(false)
-local clock_time = wibox.widget.textclock(' %l:%M.%S ', 1)
-local clock_date = wibox.widget.textclock(' %m/%d/%y ', 1)
+local clock = wibox.widget.textclock(' [%l:%M.%S] | [%m/%d/%y] ', 1)
 -- }}}
 
 -- {{{ Init func
@@ -155,13 +172,12 @@ local function set_bar(s)
 	-- {{{ Wibox setup
 	s.wibox:setup({
 		layout = wibox.container.background,
-		bg = '#00000000',
+		bg = beautiful.bg_normal,
 		{
 			layout = wibox.container.margin,
-			left = 5,
-			top = 9,
-			bottom = 9,
-			right = 0,
+			top = 7,
+			bottom = 7,
+			right = 1,
 			{
 				layout = wibox.container.background,
 				-- shape = gears.shape.rounded_bar,
@@ -183,48 +199,26 @@ local function set_bar(s)
 							layout = wibox.container.margin,
 							margins = 0,
 							{
-								bg = beautiful.green,
-								fg = beautiful.bg_normal,
-								widget = wibox.widget.background,
-
+								layout = wibox.layout.fixed.vertical,
+								fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
 								{
-									layout = wibox.layout.fixed.vertical,
-									fs_wid({ mounts = { '/', '/home', '/mnt/xdrive' } }),
-
-									-- {
-									-- 	{
-									-- 		{
-									-- 			widget = wibox.container.rotate,
-									-- 			direction = 'west',
-									-- 			{
-									-- 				widget = wibox.widget.textbox,
-									-- 				text = '⏼',
-									-- 			},
-									-- 			clock_time,
-									-- 		},
-									-- 		layout = wibox.widget.background,
-									-- 		bg = beautiful.bg_focus,
-									-- 		-- 
-									-- 	},
-									-- 	layout = wibox.container.margin,
-									-- 	top = 1,
-									-- 	bottom = 1,
-									-- },
-
-									systray_wid,
+									widget = wibox.container.rotate,
+									direction = 'west',
+									clock,
+								},
+								systray_wid,
+								{
+									layoutbox,
+									widget = wibox.container.margin,
+									top = 5,
+									left = 1,
+									right = 1,
+								},
+								{
+									widget = wibox.container.rotate,
+									direction = 'west',
 									{
-										layoutbox,
-										widget = wibox.container.margin,
-										top = 5,
-										left = 1,
-										right = 1,
-									},
-									{
-										widget = wibox.container.rotate,
-										direction = 'west',
-										{
-											widget = wibox.widget.textbox(' | '),
-										},
+										widget = wibox.widget.textbox(' | '),
 									},
 								},
 							},

@@ -567,4 +567,4 @@ end
 -- Finally, set an 'entry point' in mpv
 
 validate_config()
-mp.add_key_binding('c', 'videoclip-menu-open', main_menu.open)
+mp.add_key_binding('Alt+x', 'videoclip-menu-open', main_menu.open)

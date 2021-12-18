@@ -133,7 +133,7 @@ keys.globalkeys = gears.table.join(
 	-- {{{ Launchers
 	-- Program Launcher
 	awful.key({ modkey }, 'q', function()
-		awful.spawn.with_shell('rofi -show run ')
+		awful.spawn('rofi -show run')
 	end, {
 		description = 'run prompt',
 		group = 'launcher',
@@ -167,23 +167,25 @@ keys.globalkeys = gears.table.join(
 	-- {{{ Screenshots
 	-- Scrots
 	-- Full Scrot
-	awful.key({ modkey }, 'Insert', function()
-		awful.spawn.with_shell('$HOME/.local/bin/scripts/scrnshot.sh')
-	end, {
-		description = 'take a screenshot',
-		group = 'utils',
-	}),
+	-- awful.key({ modkey }, 'Insert', function()
+	-- 	awful.spawn.with_shell('$HOME/.local/bin/scripts/scrnshot.sh')
+	-- end, {
+	-- 	description = 'take a screenshot',
+	-- 	group = 'utils',
+	-- }),
 	-- Selection Scrot
 	awful.key({ modkey, 'Shift' }, 's', function()
-		awful.spawn.with_shell('$HOME/.config/scripts/scrnclip.sh')
+		awful.spawn.with_shell( scriptdir .. '/scrnclip.sh')
 	end, {
-		description = 'take a screen clip (playerctl)',
+		description = 'Take a selection Screenshot',
 		group = 'utils',
 	}),
 	-- }}}
 
 	-- {{{ Media control (mpd + ncspot)
-	-- playerctl music control
+	-------------------------------------------------
+	-------------------------------------------------
+	-- playerctl playback control
 	awful.key({ modkey }, 'F5', function()
 		musicctl.playback_previous()
 	end, {
@@ -208,6 +210,34 @@ keys.globalkeys = gears.table.join(
 		description = 'switch playerctl mode',
 		group = 'music',
 	}),
+	-------------------------------------------------
+	-------------------------------------------------
+	-- playerctl playback control
+	awful.key({ modkey, 'Control' }, 'F5', function()
+		musicctl.vol_increment('0.01-')
+	end, {
+		description = 'decrease volume (playerctl)',
+		group = 'music',
+	}),
+	awful.key({ modkey, 'Control' }, 'F6', function()
+		musicctl.vol_mute()
+	end, {
+		description = 'mute volume (playerctl)',
+		group = 'music',
+	}),
+	awful.key({ modkey, 'Control' }, 'F7', function()
+		musicctl.vol_increment('0.01+')
+	end, {
+		description = 'increase volume (playerctl)',
+		group = 'music',
+	}),
+	-- TODO: Add volume control widget
+	-- awful.key({ modkey, 'Control' }, 'F8', function()
+	-- 	musicctl.switch_mode()
+	-- end, {
+	-- 	description = 'switch playerctl mode',
+	-- 	group = 'music',
+	-- }),
 	-- }}}
 
 	-- {{{ Misc

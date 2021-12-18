@@ -2,6 +2,7 @@ local awful = require('awful')
 
 -- display settings
 awful.spawn.with_shell('autorandr --change --default default')
+-- awful.spawn.with_shell('autorandr --change --default tmepfix')
 -- awful.spawn.with_shell('picom')
 -- graphics
 awful.spawn.with_shell('picom --experimental-backends')

@@ -89,7 +89,7 @@ awful.screen.connect_for_each_screen(function(s)
 		bar.set_bar_style('block_vert_r')
 		bar.init(s)
 	end
-	-- bar.set_bar_style("tile")
+	-- bar.set_bar_style("thin_l")
 	-- bar.init(s)
 end)
 -- }}}

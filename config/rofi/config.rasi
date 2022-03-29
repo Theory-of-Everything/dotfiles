@@ -1,0 +1,5 @@
+@theme "lb.rasi"
+
+configuration {
+		font: "Agave 16";
+}

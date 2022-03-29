@@ -1,0 +1,76 @@
+!-------------------------URxvt Config
+urxvt.perl-ext-common: clipboard,url-select,keyboard-select,resize-font
+
+urxvt.scrollBar: false
+urxvt.internalBorder: 10
+urxvt.cursorBlink: true
+
+urxvt.depth: 32
+urxvt.background: [80]#07242c
+
+!urxvt Font Config
+urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
+/* urxvt.font: xft:Agave:style=Regular:pixelsize=16 */
+/* urxvt.boldFont: xft:Agave:style=Bold:pixelsize=16 */
+
+! Cozette font
+!urxvt.font: xft:Cozette:style=Regular:pixelsize=10
+!urxvt.letterSpace: -4
+
+urxvt.resize-font.smaller: C-M-j
+urxvt.resize-font.bigger: C-M-k
+
+
+!urxvt Copy/Paste keys
+urxvt.keysym.M-c: perl:clipboard:copy
+urxvt.keysym.M-v: perl:clipboard:paste
+
+
+!urxvt url-sel/keeb-sel keys
+urxvt.keysym.M-u: prel:url-select:select_next
+urxvt.keysym.M-Escape: perl:keyboard-select:search
+urxvt.keysym.M-s: perl:keyboard-select:search
+
+Xcursor.theme: goglus
+
+Xft*dpi: 109
+
+!------------------------- Everforest theme
+! special
+*.foreground:   #c4c7c7
+*.background:   #142c35
+*.cursorColor:  #c4c7c7
+
+! black
+*.color0:       #07242c
+*.color8:       #142c35
+
+! red
+*.color1:       #fc6195
+*.color9:       #fc81a5
+
+! green
+*.color2:       #5ac6a1
+*.color10:      #5ac6a1
+
+! yellow
+*.color3:       #fff1ac
+*.color11:      #df7353
+
+! blue
+*.color4:       #296873
+*.color12:      #6faeaf
+
+! magenta
+*.color5:       #85919b
+*.color13:      #d699b6
+
+! cyan
+*.color6:       #04a7a7
+*.color14:      #94e7e7
+
+! white
+*.color7:       #c4c7c7
+*.color15:      #dafafc
+
+! # vim: filetype=xdefaults

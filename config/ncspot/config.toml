@@ -1,0 +1,20 @@
+[theme]
+primary = "light white"
+secondary = "light black"
+title = "light green"
+playing = "light blue"
+playing_selected = "light blue"
+highlight = "black"
+highlight_bg = "light green"
+error = "light white"
+error_bg = "red"
+statusbar = "light green"
+statusbar_progress = "light red"
+cmdline = "light white"
+cmdline_bg = "black"
+search_match = "light red"
+
+[keybindings]
+"Shift+1" = "focus queue"
+"Shift+2" = "focus library"
+"Shift+3" = "focus search"

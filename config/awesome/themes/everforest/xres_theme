@@ -1,0 +1,90 @@
+!{{{-------------------------URxvt Config
+urxvt.perl-ext-common: clipboard,url-select,keyboard-select,resize-font,bell-command
+
+urxvt.scrollBar: false
+urxvt.internalBorder: 10
+urxvt.cursorBlink: true
+
+urxvt.depth: 32
+urxvt.background: [80]#2b3339
+
+!urxvt Font Config
+/* urxvt.font: xft:Agave Nerd Font:style=Regular:pixelsize=16 */
+urxvt.font: xft:agave Nerd Font Mono:style=r:pixelsize=16
+/* urxvt.font: xft:VictorMono Nerd Font:style=Regular:pixelsize=16 */
+/* urxvt.font: xft:azuki_font:style=Regular */
+/* URxvt.letterSpace: -1 */
+
+! Cozette font
+!urxvt.font: xft:Cozette:style=Regular:pixelsize=10
+!urxvt.letterSpace: -4
+
+urxvt.resize-font.smaller: C-M-j
+urxvt.resize-font.bigger: C-M-k
+
+
+!urxvt Copy/Paste keys
+urxvt.keysym.M-c: perl:clipboard:copy
+urxvt.keysym.M-v: perl:clipboard:paste
+
+
+!urxvt url-sel/keeb-sel keys
+urxvt.keysym.M-u: prel:url-select:select_next
+urxvt.keysym.M-Escape: perl:keyboard-select:search
+urxvt.keysym.M-f: perl:keyboard-select:search
+
+Xcursor.theme: goglus
+
+Xft*dpi: 109
+!}}}-------------------------------------
+
+!{{{------------------------------------xst config
+st.font: agave Nerd Font Mono:style=r:pixelsize=16
+
+st.borderpx: 10
+st.cursorblinkontype: 1
+st.scrollrate: 1
+st.opacity: 0.8
+
+st.undercurl_shape: 0
+!}}}
+
+!------------------------- Everforest theme
+! special
+*.foreground:   #d3c6aa
+*.background:   #2b3339
+*.cursorColor:  #d3c6aa
+
+! black
+*.color0:       #3a454a
+*.color8:       #3a454a
+
+! red
+*.color1:       #e67e80
+*.color9:       #e67e80
+
+! green
+*.color2:       #a7c080
+*.color10:      #a7c080
+
+! yellow
+*.color3:       #ddbc7f
+*.color11:      #ddbc7f
+
+! blue
+*.color4:       #7fbbb3
+*.color12:      #7fbbb3
+
+! magenta
+*.color5:       #d699b6
+*.color13:      #d699b6
+
+! cyan
+*.color6:       #83c092
+*.color14:      #83c092
+
+! white
+*.color7:       #d3c6aa
+*.color15:      #d3c6aa
+
+! # vim: filetype=xdefaults

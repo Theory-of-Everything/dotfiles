@@ -1,0 +1,67 @@
+# navigation
+# NAVAGATION ---------------------------------------
+# basic movement
+def_key "j"
+    scroll_down
+def_key "k"
+    scroll_up
+
+# bigger jumps
+def_key "J"
+	push_characters "jjjjj"
+def_key "K"
+	push_characters "kkkkk"
+
+# move by album
+def_key "ctrl-k"
+  scroll_up_album
+def_key "ctrl-j"
+  scroll_down_album
+
+# page nav
+def_key "ctrl-u"
+    page_up
+def_key "ctrl-d"
+    page_down
+
+# top/bottom jump
+def_key "g"
+  move_home
+def_key "G"
+  move_end
+
+# move between columns
+def_key "h"
+    previous_column
+def_key "l"
+    next_column
+
+# song skips
+def_key "i"
+  next
+def_key "u"
+  previous
+
+# MISC -------------------------------------------
+
+# update database
+def_key "U"
+  update_database
+
+# volume control
+def_key "]"
+  volume_up
+def_key "["
+  volume_down
+
+# lyrics suck
+def_key "\\"
+    show_lyrics
+
+def_key "n"
+    next_found_item
+def_key "N"
+    previous_found_item
+
+
+# vim:ft=conf

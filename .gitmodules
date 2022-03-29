@@ -1,0 +1,9 @@
+[submodule "config/awesome/bling"]
+	path = config/awesome/bling
+	url = https://github.com/BlingCorp/bling
+[submodule "config/awesome/rubato"]
+	path = config/awesome/rubato
+	url = https://github.com/andorlando/rubato
+[submodule "config/ncmpcpp/ncmpcpp-ueberzug"]
+	path = config/ncmpcpp/ncmpcpp-ueberzug
+	url = https://github.com/tam-carre/ncmpcpp-ueberzug

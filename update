@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# awesomewm
+mkdir ./config/awesome
+cp ~/.config/awesome/* ./config/awesome
+cp -r ~/.config/awesome/lib ./config/awesome
+cp -r ~/.config/awesome/themes ./config/awesome
+cp -r ~/.config/awesome/widget ./config/awesome
+cp -r ~/.config/awesome/resources ./config/awesome
+
+# zsh
+if [ ! -d ./config/zsh ]; then mkdir ./config/zsh; fi
+cp ~/.config/zsh/* ./config/zsh
+cp ~/.config/zsh/.* ./config/zsh
+
+if [ ! -d ./config/ncmpcpp/ ]; then mkdir ./config/ncmpcpp; fi
+cp ~/.config/ncmpcpp/* ./config/ncmpcpp
+
+# mpv
+cp -r ~/.config/mpv ./config
+
+# lf
+cp -r ~/.config/lf ./config
+
+if [ ! -d ./config/rofi/ ]; then mkdir ./config/rofi; fi
+cp -r ~/.config/rofi/lb.rasi ./config/rofi
+cp -r ~/.config/rofi/config.rasi ./config/rofi
+ 
+# ncspot
+cp -r ~/.config/ncspot ./config
+
+# tmux
+cp -r ~/.config/tmux ./config
+
+# picom
+cp -r ~/.config/picom ./config
+
+# newsboat
+cp -r ~/.config/newsboat ./config
+
+# cp -r ~/.config/mpd ./config
+# cp -r ~/.config/mpDris2 ./config
+# cp -r ~/.config/scripts ./config
+# cp -r ~/.config/x11 ./config
+
+# post-sync
+rm -v ./config/zsh/.zcompdump*
+rm -v ./config/zsh/.zhist
+rm -v ./config/newsboat/urls

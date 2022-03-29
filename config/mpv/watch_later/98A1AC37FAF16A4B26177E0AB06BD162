@@ -1,0 +1,4 @@
+start=0.766667
+volume=70.000000
+vf=@skiptosilence-blackout:!lavfi=graph=
+af=@skiptosilence:!lavfi=graph=%31%silencedetect=noise=-30dB:d=0.1

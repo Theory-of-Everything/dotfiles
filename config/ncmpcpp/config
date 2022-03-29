@@ -1,0 +1,76 @@
+# Files
+mpd_music_dir = "/home/theorytoe/Music"  
+ncmpcpp_directory  = ~/.config/ncmpcpp
+mpd_host = "localhost"
+mpd_port = "6600"  
+mpd_connection_timeout = "5"  
+mpd_crossfade_time = "5"  
+
+# playlist
+playlist_disable_highlight_delay = "0"  
+song_columns_list_format = "(45)[green]{t} (40)[blue]{ar} (5)[red]{l}"
+playlist_show_mpd_host = no
+playlist_show_remaining_time = no
+display_remaining_time = no
+playlist_shorten_total_times = yes
+playlist_separate_albums = no
+browser_playlist_prefix = "$2List$9 - "
+
+# show bitrate be default
+display_bitrate = "yes"
+
+# make playlist invisible for art
+visualizer_look = "  "
+# visualizer_color = green
+visualizer_color = black
+
+# unset the below to enable visualizer behind art
+visualizer_output_name = vis_feed
+visualizer_type = wave
+startup_screen = visualizer
+startup_slave_screen = playlist
+startup_slave_screen_focus = yes
+locked_screen_width_part = 30
+
+# progress bar
+progressbar_look = "━━━"
+progressbar_color = "black"
+progressbar_elapsed_color = "green"
+# progressbar_look = "=-"
+# progressbar_look = "___"
+
+# styles
+now_playing_prefix = "$6$b$7 "
+now_playing_suffix = "$/b$9"
+current_item_prefix = "$u"
+current_item_suffix = "$/u$9"
+song_status_format= "$b$5\$4 %t - %a $5\$9$/b"
+alternative_header_first_line_format = "p"
+alternative_header_second_line_format = "p"
+modified_item_prefix = "* "
+
+# other opts
+external_editor = nvim
+message_delay_time = 0
+autocenter_mode = "yes"
+# centered_cursor = "yes"
+ignore_leading_the = "yes"
+allow_for_physical_item_deletion = "no"
+connected_message_on_startup = "no"
+cyclic_scrolling = "yes"
+follow_now_playing_lyrics = "yes"
+# header_visibility = "no"
+# statusbar_visibility = "no"
+titles_visibility = "no"
+
+# ueberzug
+execute_on_song_change="~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
+
+# colors
+main_window_color = "green"
+# statusbar_color = "red"
+player_state_color = "white:b"
+statusbar_time_color = "red:b"
+state_line_color = "green:b"
+
+

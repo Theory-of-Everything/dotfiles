@@ -4,6 +4,7 @@
 mkdir ./config/awesome
 cp ~/.config/awesome/* ./config/awesome
 cp -r ~/.config/awesome/lib ./config/awesome
+cp -r ~/.config/awesome/config ./config/awesome
 cp -r ~/.config/awesome/themes ./config/awesome
 cp -r ~/.config/awesome/widget ./config/awesome
 cp -r ~/.config/awesome/resources ./config/awesome

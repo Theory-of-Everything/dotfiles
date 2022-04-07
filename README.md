@@ -1,6 +1,6 @@
 ## The Theory of Dots
 Eyo! This is my repository with my dotfiles.
-![](https://raw.githubusercontent.com/Theory-of-Everything/imagehost/main/dotfiles/rice-sidebar.png)
+![](https://media.discordapp.net/attachments/489134425519685633/961521126578745354/unknown.png)
 
 Some specs:
 
